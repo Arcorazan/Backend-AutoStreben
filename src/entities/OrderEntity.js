@@ -26,7 +26,7 @@ export class Order extends BaseEntity {
         payment = new Collection()< Payment >this;
 
         @OneToOne(() => Review, b=> b.order, { cascade: [Cascade.ALL]})
-        Review = new Collection()< Review >this;
+        review = new Collection()< Review >this;
 
     constructor(data) {
         this.status = data.status;
