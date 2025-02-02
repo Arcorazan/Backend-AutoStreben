@@ -19,7 +19,7 @@ export class Car extends BaseEntity {
     price;
 
     @OneToMany(() => CarPhotos, b=> b.car, { cascade: [Cascade.ALL]})
-        CarPhotos = new Collection()< CarPhotos >this;
+        carPhotos = new Collection()< CarPhotos >this;
 
         @ManyToOne(() => Category)
         category;

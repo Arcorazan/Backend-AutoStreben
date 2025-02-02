@@ -9,7 +9,7 @@ export class Category extends BaseEntity {
     name;
 
    @OneToMany(() => Car, b=> b.category, { cascade: [Cascade.ALL]})
-          Category = new Collection()< Car >this;
+          car = new Collection()< Car >this;
 
     constructor(data) {
         this.name = data.name;
