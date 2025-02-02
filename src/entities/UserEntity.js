@@ -1,5 +1,7 @@
-import { Entity, PrimaryKey, Property, t } from "@mikro-orm/core";
+import { Cascade, Entity, ManyToOne, OneToOne, PrimaryKey, Property, t } from "@mikro-orm/core";
 import { BaseEntity } from "../utils/BaseEntity.js";
+import { Role } from "./RoleEntity.js";
+import { bankAccount } from "./bankAccountEntity.js";
 
 @Entity()
 export class User extends BaseEntity {
@@ -27,6 +29,13 @@ export class User extends BaseEntity {
 
   @Property({type: 'string'})
   image;
+
+  //Many to one
+  @ManyToOne(() => Role)
+  role;
+
+   @OneToOne(() => bankAccount, b=> b.user, { cascade: [Cascade.ALL]})
+          bankAccount = new Collection()< bankAccount >this;
 
   constructor(data) {
     this.region = data.region;

@@ -1,5 +1,6 @@
-import { Entity, PrimaryKey, Property, t } from "@mikro-orm/core";
+import { Entity, OneToOne, PrimaryKey, Property, QueryOrder, t } from "@mikro-orm/core";
 import { BaseEntity } from "../utils/BaseEntity.js";
+import { Order } from "./OrderEntity.js";
 
 @Entity()
 export class Payment extends BaseEntity {
@@ -12,6 +13,9 @@ export class Payment extends BaseEntity {
 
     @Property({type: 'string'})
     type;
+
+     @OneToOne(() => Order)
+      order;
 
     constructor(data) {
         this.status = data.status;
