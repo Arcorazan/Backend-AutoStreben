@@ -1,25 +1,18 @@
-import { Entity, OneToOne, PrimaryKey, Property, t } from "@mikro-orm/core";
+import { EntitySchema } from "@mikro-orm/core";
 import { BaseEntity } from "../utils/BaseEntity.js";
-import { Order } from "./OrderEntity.js";
 
-@Entity()
-export class Review extends BaseEntity {
+export const Review = new EntitySchema({
+  name: "Review",
+  tableName: "Review",
+  extends: BaseEntity,
+  properties: {
+    photo: { type: "string" },
+    comment: { type: "string" },
+    stars: { type: "number" },
+  },
 
-    @Property({type: 'string'})
-    photo;
+    //@OneToOne(() => Order)
+     // order;
 
-    @Property({type: 'string'})
-    comment;
-
-    @Property({type: 'number'})
-    stars;
-
-    @OneToOne(() => Order)
-      order;
-
-    constructor(data) {
-        this.photo = data.photo;
-        this.comment = data.comment;
-        this.stars = data.stars;
-      }
-}
+   
+})

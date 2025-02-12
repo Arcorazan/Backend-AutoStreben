@@ -1,8 +1,12 @@
 import { AuthenticationRepository } from "./authenticationRepository.js";
 
 export class AuthenticationService {
-    constructor(){
-        this.repository = new AuthenticationRepository();
+    constructor(repository){
+        //pastikan repository sudah tersedia
+
+        if(repository){
+            this.repository = repository;
+        }
     }
 
     login(userBody){
@@ -14,11 +18,14 @@ export class AuthenticationService {
         return this.repository.forgetpassword(data);
     }
 
-    getAll(search){
+    async getAll(search){
         // kasih validasi kalo search nya itu ga ada character selain alphabet
         if(!/^[A-Za-z]+$/.test(search)){
             throw new Error("search invalid");
         }
-        return this.repository.getAll(search);
+
+        const result = await this.repository.getAll(search);
+
+        return result;
     }
 }

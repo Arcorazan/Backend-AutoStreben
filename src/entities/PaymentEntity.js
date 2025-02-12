@@ -1,25 +1,19 @@
-import { Entity, OneToOne, PrimaryKey, Property, QueryOrder, t } from "@mikro-orm/core";
+import { EntitySchema } from "@mikro-orm/core";
 import { BaseEntity } from "../utils/BaseEntity.js";
-import { Order } from "./OrderEntity.js";
 
-@Entity()
-export class Payment extends BaseEntity {
+export const Payment = new EntitySchema({
+  name: "Payment",
+  tableName: "Payment",
+  extends: BaseEntity,
+  properties: {
+    status: { type: "string" },
+    proofOfPay: { type: "string" },
+    type: { type: "string" },
+  },
 
-    @Property({type: 'string'})
-    status;
-
-    @Property({type: 'string'})
-    proofOfPay;
-
-    @Property({type: 'string'})
-    type;
-
-     @OneToOne(() => Order)
-      order;
-
-    constructor(data) {
-        this.status = data.status;
-        this.proofOfPay = data.proofOfPay;
-        this.type = data.type;
-      }
-}
+    //constructor(data) {
+        //this.status = data.status;
+        //this.proofOfPay = data.proofOfPay;
+        //this.type = data.type;
+      //}
+})

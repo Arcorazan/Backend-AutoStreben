@@ -2,7 +2,7 @@ import { Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import { AuthenticationModule } from "./authentication/authenticationModule.js";
 
-const generator = () => {
+const generator = (database) => {
     const router = Router();
     
     router.get('/', (req, res) => {
@@ -12,7 +12,7 @@ const generator = () => {
         });
     });
 
-    const authenticationModule = new AuthenticationModule();
+    const authenticationModule = new AuthenticationModule(database);
 
     // Pastikan createRouter mengembalikan objek Router yang valid
     router.use('/auth', authenticationModule.controller.createRouter());

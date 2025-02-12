@@ -1,17 +1,15 @@
-import { Entity, ManyToOne, PrimaryKey, Property, t } from "@mikro-orm/core";
+import { EntitySchema } from "@mikro-orm/core";
 import { BaseEntity } from "../utils/BaseEntity.js";
-import { Car } from "./CarEntity.js";
 
-@Entity()
-export class CarPhotos extends BaseEntity {
+export const CarPhotos = new EntitySchema({
+  name: "CarPhotos",
+  tableName: "CarPhotos",
+  extends: BaseEntity,
+  properties: {
+    name: { type: "string" },
+  },
 
-    @Property({type: 'string'})
-    name;
+    //@ManyToOne(() => Car)
+      //car;
 
-    @ManyToOne(() => Car)
-      car;
-
-    constructor(data) {
-        this.name = data.name;
-      }
-}
+})

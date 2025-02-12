@@ -3,9 +3,9 @@ import { AuthenticationService } from "./authenticationService.js";
 import { Router } from "express";
 
 export class AuthenticationController {
-    constructor(){
+    constructor(service){
         // import service
-        this.service = new AuthenticationService();
+        this.service = service;
         this.login = this.login.bind(this)
     }
 
@@ -37,11 +37,11 @@ export class AuthenticationController {
         })
     }
 
-    getAll(req, res){
+    async getAll(req, res){
         //ambil search dari request query user
         //contoh google.com?search=sajdisjffai
         const search = req.query.search
-        const getData = this.service.getAll(search);
+        const getData = await this.service.getAll(search);
         return res.status(StatusCodes.OK).json(getData)
     }
 }

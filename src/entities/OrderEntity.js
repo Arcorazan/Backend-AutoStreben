@@ -1,38 +1,22 @@
-import { Cascade, Entity, OneToOne, PrimaryKey, Property, t } from "@mikro-orm/core";
+import { EntitySchema } from "@mikro-orm/core";
 import { BaseEntity } from "../utils/BaseEntity.js";
-import { User } from "./UserEntity.js";
-import { Payment } from "./PaymentEntity.js";
-import { Review } from "./ReviewEntity.js";
 
-@Entity()
-export class Order extends BaseEntity {
+export const Order = new EntitySchema({
+  name: "Order",
+  tableName: "Order",
+  extends: BaseEntity,
+  properties: {
+    status: { type: "string" },
+    totalAmount: { type: "number" },
+    tax: { type: "number" },
+    subTotal: { type: "number" },
+    address: { type: "string" },
+  },
 
-    @Property({type: 'string'})
-    status;
+   // @OneToOne(() => Payment, b=> b.order, { cascade: [Cascade.ALL]})
+       // payment = new Collection()< Payment >this;
 
-    @Property({type: 'number'})
-    totalAmount;
+       // @OneToOne(() => Review, b=> b.order, { cascade: [Cascade.ALL]})
+       // review = new Collection()< Review >this;
 
-    @Property({type: 'number'})
-    tax;
-
-    @Property({type: 'number'})
-    subTotal;
-
-    @Property({type: 'string'})
-    address;
-
-    @OneToOne(() => Payment, b=> b.order, { cascade: [Cascade.ALL]})
-        payment = new Collection()< Payment >this;
-
-        @OneToOne(() => Review, b=> b.order, { cascade: [Cascade.ALL]})
-        review = new Collection()< Review >this;
-
-    constructor(data) {
-        this.status = data.status;
-        this.totalAmount = data.totalAmount;
-        this.tax = data.tax
-        this.subTotal = data.subTotal
-        this.address = data.address
-      }
-}
+})

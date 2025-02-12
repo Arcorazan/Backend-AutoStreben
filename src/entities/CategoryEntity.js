@@ -1,17 +1,15 @@
-import { Cascade, Entity, OneToMany, PrimaryKey, Property, t } from "@mikro-orm/core";
+import { EntitySchema } from "@mikro-orm/core";
 import { BaseEntity } from "../utils/BaseEntity.js";
-import { Car } from "./CarEntity.js";
 
-@Entity()
-export class Category extends BaseEntity {
+export const Category = new EntitySchema({
+  name: "Category",
+  tableName: "Category",
+  extends: BaseEntity,
+  properties: {
+    name: { type: "string" },
+  },
 
-    @Property({type: 'string'})
-    name;
+  // @OneToMany(() => Car, b=> b.category, { cascade: [Cascade.ALL]})
+        //  car = new Collection()< Car >this;
 
-   @OneToMany(() => Car, b=> b.category, { cascade: [Cascade.ALL]})
-          car = new Collection()< Car >this;
-
-    constructor(data) {
-        this.name = data.name;
-      }
-}
+})
