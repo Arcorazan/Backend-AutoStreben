@@ -3,7 +3,7 @@ import { BaseEntity } from "../utils/BaseEntity.js";
 
 export const Car = new EntitySchema({
   name: "Car",
-  tableName: "Car",
+  tableName: "car",
   extends: BaseEntity,
   properties: {
     name: { type: "string" },

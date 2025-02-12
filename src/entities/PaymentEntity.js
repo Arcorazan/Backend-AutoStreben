@@ -3,7 +3,7 @@ import { BaseEntity } from "../utils/BaseEntity.js";
 
 export const Payment = new EntitySchema({
   name: "Payment",
-  tableName: "Payment",
+  tableName: "payment",
   extends: BaseEntity,
   properties: {
     status: { type: "string" },

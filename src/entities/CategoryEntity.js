@@ -3,7 +3,7 @@ import { BaseEntity } from "../utils/BaseEntity.js";
 
 export const Category = new EntitySchema({
   name: "Category",
-  tableName: "Category",
+  tableName: "category",
   extends: BaseEntity,
   properties: {
     name: { type: "string" },

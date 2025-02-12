@@ -3,7 +3,7 @@ import { BaseEntity } from "../utils/BaseEntity.js";
 
 export const Order = new EntitySchema({
   name: "Order",
-  tableName: "Order",
+  tableName: "order",
   extends: BaseEntity,
   properties: {
     status: { type: "string" },
